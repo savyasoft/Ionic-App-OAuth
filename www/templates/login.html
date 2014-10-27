@@ -1,30 +1,30 @@
 <ion-view title="Login">
-  <ion-content class="padding" ng-init="setInits()">
-      		
-     <div class="card" ng-if="error">
-          <div class="item item-text-wrap">
-             {{error}}
-          </div>
-      </div>
+    <ion-content class="padding" ng-init="setInits()">
 
-		<div class="list">
-		  <label class="item item-input item-floating-label">
-		    <span class="input-label">Email</span>
-		    <input type="text" placeholder="Email" ng-model="user.email" />
-		  </label>
+        <div class="card" ng-if="error">
+            <div class="item item-text-wrap">
+                {{error}}
+            </div>
+        </div>
 
-		  <label class="item item-input item-floating-label">
-		    <span class="input-label">Password</span>
-		    <input type="password" placeholder="Pass word"  ng-model="user.password"/>
-		  </label>
-		  <button class="button button-block button-dark activated" ng-click="login()"> 
-		     Login 
-		  </button>
+        <div class="list">
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Email</span>
+                <input type="text" placeholder="Email" ng-model="user.email" />
+            </label>
 
-		  <button class="button button-block button-dark activated" ng-click="facebook()" > 
-		     Facebook 
-		  </button>
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Password</span>
+                <input type="password" placeholder="Pass word" ng-model="user.password" />
+            </label>
+            <button class="button button-block button-dark activated" ng-click="login()">
+                Login
+            </button>
 
-		</div>
-</ion-content>
+            <button class="button button-block button-dark activated" ng-click="facebook()">
+                Facebook
+            </button>
+
+        </div>
+    </ion-content>
 </ion-view>

@@ -1,26 +1,26 @@
 <ion-view title="Home" ng-init="setInits()">
- <ion-list>
-  <ion-item ng-click="setItem(item)" ng-repeat="item in items">
-  
- 
- 
-   <ion-delete-button class="ion-minus-circled" ></ion-delete-button>
-    Hello, {{item}}!
- 
-  </ion-item>
- </ion-list>
+    <ion-list>
+        <ion-item ng-click="setItem(item)" ng-repeat="item in items">
+
+
+
+            <ion-delete-button class="ion-minus-circled"></ion-delete-button>
+            Hello, {{item}}!
+
+        </ion-item>
+    </ion-list>
 </ion-view>
 
 
 <script id="item.html" type="text/ng-template">
-  <ion-modal-view>
-    <ion-header-bar>
-      <h1 class="title">Item</h1>
-      <button class="button button-clear button-positive" ng-click="closeItem()">Cancel</button>
- 
-    </ion-header-bar>
+    < ion - modal - view >
+        < ion - header - bar >
+        < h1 class = "title" > Item < /h1>
+      <button class="button button-clear button-positive" ng-click="closeItem()">Cancel</button >
+
+    < /ion-header-bar>
     <ion-content>
       Hello!
-    </ion-content>
-  </ion-modal-view>
+    </ion - content >
+        < /ion-modal-view>
 </script>

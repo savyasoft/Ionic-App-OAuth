@@ -1,4 +1,3 @@
-
 // Ionic Starter App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
@@ -6,90 +5,78 @@
 // the 2nd parameter is an array of 'requires'
 
 
-angular.module('todo', ['ionic' , 'todo.controllers' , 'todo.factories'  ])
-.constant('$ionicLoadingConfig',{
-  template : "loading ... "
-})
+angular.module('todo', ['ionic', 'todo.controllers', 'todo.factories'])
+    .constant('$ionicLoadingConfig', {
+        template: "loading ... "
+    })
+    .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
-.config(function($stateProvider, $urlRouterProvider , $httpProvider ) {
-/*        $httpProvider.defaults.useXDomain = true;
-        $httpProvider.defaults.headers.common = 'Content-Type: application/json';
-        delete $httpProvider.defaults.headers.common['X-Requested-With'];
-*/
-
-    var isLoggedIn = function ( $location ,$rootScope , $timeout , $q , $cookies) {
+        // checking any user logged in
+        var isLoggedIn = function($location, $rootScope, $timeout, $q, $cookies) {
             var deferred = $q.defer();
-            $timeout(function () {
-                var token = $cookies.token;               
-               if(token){
-                  $timeout(deferred.resolve);
-               } 
-               else {         	
-                 $timeout(deferred.reject);
-                 $location.url('/login');
-               }
-            },0);  
+            $timeout(function() {
+                var token = $cookies.token;
+                if (token) {
+                    $timeout(deferred.resolve);
+                } else {
+                    $timeout(deferred.reject);
+                    $location.url('/login');
+                }
+            }, 0);
             return deferred.promise;
-     } 
+        };
 
-    var isLoggedOut = function ( $location ,$rootScope , $timeout , $q , $cookies) {
+        // checking no user logged in
+        var isLoggedOut = function($location, $rootScope, $timeout, $q, $cookies) {
             var deferred = $q.defer();
-            $timeout(function () {
-               //var user = localStorage.getItem("userId");
-               var token = $cookies.token;               
-               if(token){
-                 $timeout(deferred.reject);
-                 $location.url('/home');
-               } 
-               else {         	
-                  $timeout(deferred.resolve);
-               }
-            },0);  
+            $timeout(function() {
+                //var user = localStorage.getItem("userId");
+                var token = $cookies.token;
+                if (token) {
+                    $timeout(deferred.reject);
+                    $location.url('/home');
+                } else {
+                    $timeout(deferred.resolve);
+                }
+            }, 0);
             return deferred.promise;
-     } 
-    $stateProvider
-    .state('login', {
-      url: '/login',
-      templateUrl : "templates/login.html",
-      controller : "LoginCtrl",
-      resolve : {
-        loggedin : isLoggedOut      
-      } 
-    })
-    .state('register', {
-      url: '/register',
-      templateUrl : "templates/register.html",
-      controller : "RegisterCtrl",
-      resolve : {
-        loggedin : isLoggedOut      
-      } 
-    })
-    .state('profile', {
-      url: '/profile',
-      templateUrl : "templates/profile.html",
-      controller : "ProfileCtrl",
-      resolve : {
-        loggedin : isLoggedIn      
-      } 
-    })
-    .state('home', {
-      url: '/home',
-      templateUrl : "templates/home.html",
-      controller : "HomeCtrl"
-      ,
-      resolve : {
-        loggedin : isLoggedIn      
-      } 
-    })
-    .state('workplace', {
-      url: '/workplace',
-      templateUrl : "templates/workplace.html",
-      controller : "WorkPlaceCtrl",
-      resolve : {
-        loggedin : isLoggedIn      
-      } 
+        };
+        // route for login page 
+        $stateProvider
+            .state('login', {
+                url: '/login',
+                templateUrl: "templates/login.html",
+                controller: "LoginCtrl",
+                resolve: {
+                    loggedin: isLoggedOut
+                }
+            })
+        // route for registration page
+        .state('register', {
+            url: '/register',
+            templateUrl: "templates/register.html",
+            controller: "RegisterCtrl",
+            resolve: {
+                loggedin: isLoggedOut
+            }
+        })
+        // route for profile page
+        .state('profile', {
+            url: '/profile',
+            templateUrl: "templates/profile.html",
+            controller: "ProfileCtrl",
+            resolve: {
+                loggedin: isLoggedIn
+            }
+        })
+        // route for home page
+        .state('home', {
+            url: '/home',
+            templateUrl: "templates/home.html",
+            controller: "HomeCtrl",
+            resolve: {
+                loggedin: isLoggedIn
+            }
+        });
+        $urlRouterProvider.otherwise('/login');
     });
-    
-     $urlRouterProvider.otherwise('/login');
-
-});
