@@ -1,0 +1,39 @@
+<ion-view title="Register">
+  <ion-content class="padding" ng-init="setInits()">
+     <div class="card" ng-if="errors.length">
+          <div ng-repeat="error in errors" class="item item-text-wrap">
+             {{error}}
+          </div>
+
+      </div>
+		<div class="list">
+		<label class="item item-input item-floating-label">
+		    <span class="input-label">Full Name</span>
+		    <input type="text" placeholder="Full Name" ng-model="user.name" />
+		  </label>
+		  <label class="item item-input item-floating-label">
+		    <span class="input-label">Email</span>
+		    <input type="text" placeholder="Email" ng-model="user.email" />
+		  </label>
+		  <label class="item item-input item-floating-label">
+		    <span class="input-label">UserName</span>
+		    <input type="text" placeholder="UserName" ng-model="user.username" />
+		  </label>
+    	  <label class="item item-input item-floating-label">
+		    <span class="input-label">Password</span>
+		    <input type="password" placeholder="Pass word"  ng-model="user.password"/>
+		  </label>
+		  <label class="item item-input item-floating-label">
+		    <span class="input-label">Repeat Password</span>
+		    <input type="password" placeholder="Repeat Password" ng-model="user.confirmPassword" />
+		  </label>
+
+		  <button class="button button-block button-dark activated" ng-click="register()"> 
+		     Create Account 
+		  </button>
+
+
+
+		</div>
+</ion-content>
+</ion-view>
