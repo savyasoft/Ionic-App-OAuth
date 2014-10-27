@@ -36,8 +36,8 @@ angular.module('todo', ['ionic' , 'todo.controllers' , 'todo.factories'  ])
             var deferred = $q.defer();
             $timeout(function () {
                //var user = localStorage.getItem("userId");
-               var user = $cookies.userId;               
-               if(user){
+               var token = $cookies.token;               
+               if(token){
                  $timeout(deferred.reject);
                  $location.url('/home');
                } 
@@ -47,7 +47,6 @@ angular.module('todo', ['ionic' , 'todo.controllers' , 'todo.factories'  ])
             },0);  
             return deferred.promise;
      } 
-
     $stateProvider
     .state('login', {
       url: '/login',
