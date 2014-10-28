@@ -6,6 +6,12 @@
                 {{error}}
             </div>
         </div>
+        <div class="card" ng-if="errors.length">
+            <div ng-repeat="error in errors" class="item item-text-wrap">
+                {{error}}
+            </div>
+
+        </div>
 
         <div class="list">
             <label class="item item-input item-floating-label">

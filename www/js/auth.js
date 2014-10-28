@@ -29,6 +29,7 @@ angular.module("auth", ['ngCookies', 'hellofacebook'])
         $rootScope.activeLink = $location.url();
         $scope.user = {}
         $scope.error = null;
+         $scope.errors = [];
     }
 
     // login event
@@ -65,11 +66,16 @@ angular.module("auth", ['ngCookies', 'hellofacebook'])
                 $cookieStore.put("token", response.token);
                 $location.url('/home');
                 $scope.hide();
-
             },
             function(reason) {
                 $scope.hide();
-                $scope.error = reason;
+                if(Array.isArray(reason)){
+		                angular.forEach(reason, function(e) {
+		                    $scope.errors.push(e.msg)
+		                });
+                } else {
+                   $scope.error = reason;
+                }
             });
 
     }
