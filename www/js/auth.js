@@ -1,22 +1,21 @@
 // auth module for authentication for the ionic app to the server app
 
-angular.module("auth", ['ngCookies', 'hellofacebook'])
+angular.module("auth", ['hellofacebook'])
 // server url
-.constant("serverurl", "http://localhost:3000/")
-    .run(function($rootScope, $http, $cookieStore, $location, serverurl) {
+.constant("serverurl", "http://192.168.1.110:3000/")
+    .run(function($rootScope, $http,  $location, serverurl) {
 
         // cheking for the logged in user when app starts
-        var token = $cookieStore.get("token");
+        var token = localStorage.getItem("token");
         if (token) {
             $http.get(serverurl + 'userById?token=' + token)
                 .success(function(responce) {
                     $rootScope.currentUser = responce;
                 })
                 .error(function(r) {
-                    $cookieStore.remove("userId");
-                    $cookieStore.remove("token");
+                    localStorage.setItem("token" , "");
                     $location.url('/affiliate');
-                    alert("error" + r);
+                    alert("error in" + r);
                 });
         } else {
             $rootScope.user = null;
@@ -24,7 +23,7 @@ angular.module("auth", ['ngCookies', 'hellofacebook'])
     })
 
 // controller for the login functionality
-.controller('LoginCtrl', function($scope, $rootScope, $ionicLoading, $http, $location, $cookieStore, hellofacebook, serverurl) {
+.controller('LoginCtrl', function($scope, $rootScope, $ionicLoading, $http, $location, hellofacebook, serverurl) {
     $scope.setInits = function() {
         $rootScope.activeLink = $location.url();
         $scope.user = {}
@@ -44,7 +43,7 @@ angular.module("auth", ['ngCookies', 'hellofacebook'])
         })
             .success(function(response) {
                 $rootScope.currentUser = response.user;
-                $cookieStore.put("token", response.token);
+                localStorage.setItem("token", response.token);
                 $location.url('/home');
                 $scope.hide();
             })
@@ -63,7 +62,7 @@ angular.module("auth", ['ngCookies', 'hellofacebook'])
         var promise = hellofacebook.login();
         promise.then(function(response) {
                 $rootScope.currentUser = response.user;
-                $cookieStore.put("token", response.token);
+                localStorage.setItem("token", response.token);
                 $location.url('/home');
                 $scope.hide();
             },
@@ -93,7 +92,7 @@ angular.module("auth", ['ngCookies', 'hellofacebook'])
 
 
 // controller for the user registration functionality
-.controller('RegisterCtrl', function($scope, $rootScope, $ionicLoading, $http, $location, $cookieStore) {
+.controller('RegisterCtrl', function($scope, $rootScope, $ionicLoading, $http, $location) {
     $scope.setInits = function() {
         $rootScope.activeLink = $location.url();
         $scope.user = {};
@@ -114,7 +113,7 @@ angular.module("auth", ['ngCookies', 'hellofacebook'])
         $scope.loading();
 
         // server REST api call for registration 
-        $http.post('http://localhost:3000/register', {
+        $http.post('http://192.168.1.110:3000/register', {
             email: $scope.user.email,
             password: $scope.user.password,
             confirmPassword: $scope.user.confirmPassword,
@@ -124,8 +123,7 @@ angular.module("auth", ['ngCookies', 'hellofacebook'])
         })
             .success(function(result) {
                 $rootScope.currentUser = result.user;
-                //$cookieStore.put("userId",user._id);
-                $cookieStore.put("token", result.token);
+                localStorage.setItem("token", result.token);
                 $scope.hide();
                 $location.url('/affiliate');
 

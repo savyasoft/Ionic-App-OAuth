@@ -12,10 +12,10 @@ angular.module('todo', ['ionic', 'todo.controllers', 'todo.factories'])
     .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
         // checking any user logged in
-        var isLoggedIn = function($location, $rootScope, $timeout, $q, $cookies) {
+        var isLoggedIn = function($location, $rootScope, $timeout, $q) {
             var deferred = $q.defer();
             $timeout(function() {
-                var token = $cookies.token;
+                var token = localStorage.getItem('token');
                 if (token) {
                     $timeout(deferred.resolve);
                 } else {
@@ -27,11 +27,11 @@ angular.module('todo', ['ionic', 'todo.controllers', 'todo.factories'])
         };
 
         // checking no user logged in
-        var isLoggedOut = function($location, $rootScope, $timeout, $q, $cookies) {
+        var isLoggedOut = function($location, $rootScope, $timeout, $q ) {
             var deferred = $q.defer();
             $timeout(function() {
                 //var user = localStorage.getItem("userId");
-                var token = $cookies.token;
+                var token = localStorage.getItem('token');
                 if (token) {
                     $timeout(deferred.reject);
                     $location.url('/home');
