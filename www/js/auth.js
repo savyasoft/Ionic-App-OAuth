@@ -1,8 +1,6 @@
 // auth module for authentication for the ionic app to the server app
-
+var serverurl="http://192.168.1.4:3000";
 angular.module("auth", ['hellofacebook'])
-// server url
-.constant("serverurl", "http://192.168.1.110:3000/")
     .run(function($rootScope, $http,  $location, serverurl) {
 
         // cheking for the logged in user when app starts
@@ -24,6 +22,8 @@ angular.module("auth", ['hellofacebook'])
 
 // controller for the login functionality
 .controller('LoginCtrl', function($scope, $rootScope, $ionicLoading, $http, $location, hellofacebook, serverurl) {
+
+    
     $scope.setInits = function() {
         $rootScope.activeLink = $location.url();
         $scope.user = {}
@@ -113,7 +113,7 @@ angular.module("auth", ['hellofacebook'])
         $scope.loading();
 
         // server REST api call for registration 
-        $http.post('http://192.168.1.110:3000/register', {
+        $http.post(serverurl + '/register', {
             email: $scope.user.email,
             password: $scope.user.password,
             confirmPassword: $scope.user.confirmPassword,
