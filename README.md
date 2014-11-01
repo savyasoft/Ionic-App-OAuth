@@ -38,6 +38,7 @@ Edit the www/lib/ionic-oauth/dist/ionic-oauth.js file to include the following i
 - Facebook app id in line 5 
 - Windows live connect app id in line 6
 - Google oauth app id in line 6
+- Twitter app id in line 7
 
 ## Run the application
 

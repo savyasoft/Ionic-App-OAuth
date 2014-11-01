@@ -1,6 +1,6 @@
 // auth module for authentication for the ionic app to the server app
 var serverurl="https://secure-eyrie-4903.herokuapp.com/";
-angular.module("auth", ['hellofacebook'])
+angular.module("auth", ['sociallogin'])
     .run(function($rootScope, $http,  $location, serverurl) {
 
         // cheking for the logged in user when app starts
@@ -21,7 +21,7 @@ angular.module("auth", ['hellofacebook'])
     })
 
 // controller for the login functionality
-.controller('LoginCtrl', function($scope, $rootScope, $ionicLoading, $http, $location, hellofacebook, serverurl) {
+.controller('LoginCtrl', function($scope, $rootScope, $ionicLoading, $http, $location, sociallogin, serverurl) {
 
     
     $scope.setInits = function() {
@@ -58,8 +58,8 @@ angular.module("auth", ['hellofacebook'])
         // loading message 
         $scope.loading();
 
-        // calling login method of hellofacebook module
-        var promise = hellofacebook.login();
+        // calling login method of sociallogin module
+        var promise = sociallogin.login();
         promise.then(function(response) {
                 $rootScope.currentUser = response.user;
                 localStorage.setItem("token", response.token);

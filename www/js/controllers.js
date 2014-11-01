@@ -1,8 +1,8 @@
 // Controllers of the app
 
-angular.module('todo.controllers', ['hellofacebook', 'auth'])
+angular.module('todo.controllers', ['sociallogin', 'auth'])
 // controller for the side menu of the ionic app
-.controller('SideMenuCtrl', function($scope, $location, Projects, $http, $rootScope, $ionicSideMenuDelegate, hellofacebook, serverurl) {
+.controller('SideMenuCtrl', function($scope, $location, Projects, $http, $rootScope, $ionicSideMenuDelegate, sociallogin, serverurl) {
     $scope.setInits = function() {
         $scope.$watch("currentUser", function() {
             if ($rootScope.currentUser)
@@ -27,7 +27,7 @@ angular.module('todo.controllers', ['hellofacebook', 'auth'])
 
     $scope.logout = function() {
         if ($rootScope.currentUser.provider == "facebook") {
-            hellofacebook.logout();
+            sociallogin.logout();
         }
         $rootScope.currentUser = null;
         localStorage.setItem('token' , ''); 
