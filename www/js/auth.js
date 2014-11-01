@@ -1,5 +1,5 @@
 // auth module for authentication for the ionic app to the server app
-var serverurl="http://192.168.1.4:3000";
+var serverurl="https://secure-eyrie-4903.herokuapp.com/";
 angular.module("auth", ['hellofacebook'])
     .run(function($rootScope, $http,  $location, serverurl) {
 
@@ -113,7 +113,7 @@ angular.module("auth", ['hellofacebook'])
         $scope.loading();
 
         // server REST api call for registration 
-        $http.post(serverurl + '/register', {
+        $http.post(serverurl + 'register', {
             email: $scope.user.email,
             password: $scope.user.password,
             confirmPassword: $scope.user.confirmPassword,
