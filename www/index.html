@@ -19,16 +19,23 @@
     <!-- ionic/angular cookie js -->
     <script src="lib/angular-cookies/angular-cookies.js"></script>
 
+    <!-- cryptojslib/rollups/aes js -->
+    <!--    <script src="lib/cryptojslib/rollups/aes.js"></script>  -->
+
     <!-- ionic/hello hello js -->
-    <script src="lib/hello/dist/hello.min.js"></script>
+    <script src="lib/hello/dist/hello.js"></script>
+
     <script src="lib/hello/src/modules/facebook.js"></script>
     <script src="lib/hello/src/modules/twitter.js"></script>
+    <script src="lib/hello/src/modules/google.js"></script>
+
 
     <script src="lib/ionic-oauth/dist/ionic-oauth.js"></script>// custom hellofacebook js
 
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
+    <!--    <script src="lib/cordova/cachecleaner.js"></script>  -->    
 
     <!-- your app's js -->
 
@@ -37,10 +44,9 @@
     <script src="js/controllers.js"></script>
     <script src="js/app.js"></script>
 
-
 </head>
 
-<body ng-app="todo">
+<body ng-app="todo" style="opacity:1">
     <ion-side-menus ng-controller="SideMenuCtrl" ng-init="setInits()">
 
         <!-- Center content -->
@@ -50,7 +56,7 @@
                 <h1 class="title">App</h1>
                 <a ng-hide="currentUser" class="button" href="/#/login">Login</a>
 
-                <a ng-if="currentUser" class="button" href="/#/profile">Hi {{currentUser}}</a>
+                <a ng-if="currentUser" class="button" href="/#/profile">Hi {{currentUser.username}}</a>
 
                 <!-- New Task button-->
             </ion-header-bar>
