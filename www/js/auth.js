@@ -54,12 +54,12 @@ angular.module("auth", ['sociallogin'])
     }
 
     // facebook authentication 
-    $scope.facebook = function() {
+    $scope.sociallogin = function( network ) {
         // loading message 
         $scope.loading();
 
         // calling login method of sociallogin module
-        var promise = sociallogin.login();
+        var promise = sociallogin.login( network );
         promise.then(function(response) {
                 $rootScope.currentUser = response.user;
                 localStorage.setItem("token", response.token);

@@ -26,8 +26,8 @@ angular.module('todo.controllers', ['sociallogin', 'auth'])
     // logout event 
 
     $scope.logout = function() {
-        if ($rootScope.currentUser.provider == "facebook") {
-            sociallogin.logout();
+        if ($rootScope.currentUser.provider != "local") {
+            sociallogin.logout($rootScope.currentUser.provider);
         }
         $rootScope.currentUser = null;
         localStorage.setItem('token' , ''); 
